@@ -6,4 +6,4 @@
 
 장소: 온라인, 오프라인으로 진행할 예정. 일정 범위까지 나가면 오프라인으로 모임
 
-인원: [dc-choi](https://github.com/dc-choi), 
+[![인원](https://contrib.rocks/image?repo=debug-community/typescript-study)](https://github.com/debug-community/typescript-study/graphs/contributors)
