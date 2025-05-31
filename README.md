@@ -12,6 +12,6 @@
 ## Contributors
 
 - 기여해주신 모든 분께 감사드립니다.
-- 오탈자, 가독성이 좋지 않은 부분 또는 추가 내용은 `Pull Request`, `Issue` 등을 자유롭게 남겨주시면 검토 후에 반영하겠습니다.
+- 피드백은 `Pull Request`, `Issue` 등을 자유롭게 남겨주시면 검토 후에 반영하겠습니다.
 
 [![인원](https://contrib.rocks/image?repo=debug-community/typescript-study)](https://github.com/debug-community/typescript-study/graphs/contributors)
