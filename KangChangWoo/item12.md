@@ -129,4 +129,42 @@ const checkedFetch: typeof fetch = async (input, init) => {
 
 `checkedFetch` 를 함수 문장으로 작성한 예제에서도 `throw` 가 아니라 `return` 을 사용할 경우 오류가 발생한다. 그러나 오류는 첫 번째 예제와 달리 `checkedFetch` 구현체가 아닌, 함수를 호출한 위치에서 발생한다.
 
+### 추가
+- DRY(Don’t Repeat Yourself) 원칙
+    
+    [https://lilys.ai/digest/4520100/3580744](https://lilys.ai/digest/4520100/3580744) 
+    
+    ```jsx
+    declare function fetch(
+    	input: RequestInfo, init?: RequestInit
+    ): Promise<Response>;
+    
+    async function checkedFetch(input: RequestInfo, init?: RequestInit) {
+    	const response = await fetch(input, init);
+    	if (!response.ok) {
+    		throw new Error('Request failed: ' + response.status);
+    	}
+    	return response;
+    }
+    
+    const checkedFetch: typeof fetch = async (input, init) => {
+    	const response = await fetch(input, init);
+    	if (!response.ok) {
+    		throw new Error('Request failed' + response.status);
+    	}
+    	return response;
+    }
+    
+    lib.dom.d.ts란?
+    - node_modules/typescript/lib/lib.dom.d.ts
+    - TypeScript의 기본 타입 선언 파일 중 하나.
+    - TypeScript는 여러 표준 라이브러리 환경에 대한 타입 정의를 포함하며,
+    	그 중 하나가 브라우저 환경을 위한 lib.dom.ts이다.
+    - 이 파일은 브라우저의 DOM API(fetch, document, window, HTMLElement, Event 등)을
+    	타입 정의로 제공한다.
+    - tsc가 설정에 따라 여러 기본 라이브러리를 자동으로 포함한다.
+    	tsconfig.json에서 "compilerOptions: {"lib": ["dom", "es2020"]}과 같이 설정된다.
+    	
+    ! 만약 lib:["dom"]이 빠지면 fetch, window, document 등을 사용할 수 없다.
+    ```
 함수의 매개변수에 타입 선언을 하는 것보다 함수 표현식 전체 타입을 정의하는 것이 코드도 간결하고 안전하다. 다른 함수의 시그니처와 동일한 타입을 가지는 새 함수를 작성하거나, 동일한 타입 시그니처를 가지는 여러 개의 함수를 작성할 때는 매개변수의 타입과 반환 타입을 반복해서 작성하지 말고 함수 전체의 타입 선언을 적용해야 한다.
